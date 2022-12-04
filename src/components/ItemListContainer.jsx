@@ -1,20 +1,19 @@
-
 import React, { useEffect, useState } from "react";
 import {productos} from "../assets/productos"
 import {promesaProd} from "../assets/promesaProd"
 
 const ItemListContainer = ({mensaje}) => {
 
-    const [listarProductos, setListarProductos] = useState([])
+   const [listarProductos, setListarProductos] = useState([])
 
-    useEffect(() => {
-        promesaProd(productos) 
-            .then(res => {
-                setListarProductos(res)
-            })
-    },[]) 
+   useEffect(() => {
+       promesaProd(productos) 
+           .then(res => {
+               setListarProductos(res)
+           })
+   },[]) 
 
-    return(
+    return (
 
         <div className="container">
             <div className="row">
@@ -26,8 +25,8 @@ const ItemListContainer = ({mensaje}) => {
                     </div>
                 </div>
             </div>
-            
         </div>
+
     )
 } 
 
