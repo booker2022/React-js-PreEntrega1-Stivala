@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <div className="container py-5">
+    <div className="container py-5">
         <div className="row">
             <div className="col-md-6">
                 <a href="#" className="mx-1"><img src="/imagenes/facebook.svg" alt="Facebook" width="24"/></a>

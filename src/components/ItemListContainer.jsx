@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {productos} from "../assets/productos"
-import {promesaProd} from "../assets/promesaProd"
 
-const ItemListContainer = ({mensaje}) => {
+import ItemCount from "./ItemCount"
+import ItemList from "./ItemList";
 
-   const [listarProductos, setListarProductos] = useState([])
+const ItemListContainer = () => {
 
-   useEffect(() => {
-       promesaProd(productos) 
-           .then(res => {
-               setListarProductos(res)
-           })
-   },[]) 
+    const [listarProductos, setListarProductos] = useState([])
+    const {id} = useParams()
+  
+    useEffect (() => {
+        const promesa = new Promise((res, rej) =>  {
+            setTimeout ( () => {
+               res(id ? productos.filter(item => item.categoria === id) : productos)
+            }, 2000)
+        })
+        
+        promesa.then(data => {                              
+            setListarProductos(data)
+        })
+    },[id])
 
     return (
 
-        <div className="container">
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="alert alert-primary text-center m-3 fs-2" role="alert">
-
-                        {mensaje}
-                    
-                    </div>
-                </div>
-            </div>
+        <div className="container" >
+            <ItemList prod = {listarProductos} />
+            <ItemCount inicial = {1} stock = {10} />
         </div>
 
     )
 } 
 
 export default ItemListContainer;
-
